@@ -19,4 +19,5 @@ pub enum Role {
     Notifier,
     Mediator,
     Recipient,
+    Questioner,
 }

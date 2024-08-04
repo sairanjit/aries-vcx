@@ -9,6 +9,7 @@ pub mod notification;
 pub mod out_of_band;
 pub mod pickup;
 pub mod present_proof;
+pub mod question_answer;
 pub mod report_problem;
 pub mod revocation;
 pub mod routing;

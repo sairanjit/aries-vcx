@@ -9,8 +9,9 @@ use self::{
     coordinate_mediation::CoordinateMediationType, cred_issuance::CredentialIssuanceType,
     did_exchange::DidExchangeType, discover_features::DiscoverFeaturesType,
     notification::NotificationType, out_of_band::OutOfBandType, pickup::PickupType,
-    present_proof::PresentProofType, report_problem::ReportProblemType, revocation::RevocationType,
-    routing::RoutingType, signature::SignatureType, trust_ping::TrustPingType,
+    present_proof::PresentProofType, question_answer::QuestionAnswerType,
+    report_problem::ReportProblemType, revocation::RevocationType, routing::RoutingType,
+    signature::SignatureType, trust_ping::TrustPingType,
 };
 use crate::{
     error::{MsgTypeError, MsgTypeResult},
@@ -27,6 +28,7 @@ pub mod notification;
 pub mod out_of_band;
 pub mod pickup;
 pub mod present_proof;
+pub mod question_answer;
 pub mod report_problem;
 pub mod revocation;
 pub mod routing;
@@ -65,6 +67,7 @@ pub enum Protocol {
     PickupType(PickupType),
     CoordinateMediationType(CoordinateMediationType),
     DidExchangeType(DidExchangeType),
+    QuestionAnswerType(QuestionAnswerType),
 }
 
 /// Utility macro to avoid harder to read and error prone calling
@@ -103,6 +106,7 @@ impl Protocol {
         match_protocol!(PickupType, protocol, major, minor);
         match_protocol!(CoordinateMediationType, protocol, major, minor);
         match_protocol!(DidExchangeType, protocol, major, minor);
+        match_protocol!(QuestionAnswerType, protocol, major, minor);
 
         Err(MsgTypeError::unknown_protocol(protocol.to_owned()))
     }
@@ -125,6 +129,7 @@ impl Protocol {
             Self::PickupType(v) => v.as_protocol_parts(),
             Self::CoordinateMediationType(v) => v.as_protocol_parts(),
             Self::DidExchangeType(v) => v.as_protocol_parts(),
+            Self::QuestionAnswerType(v) => v.as_protocol_parts(),
         }
     }
 

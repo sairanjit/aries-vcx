@@ -14,7 +14,7 @@ use std::{marker::PhantomData, str::FromStr};
 
 pub use protocols::{
     basic_message, connection, cred_issuance, discover_features, notification, out_of_band,
-    present_proof, report_problem, revocation, routing, trust_ping, Protocol,
+    present_proof, question_answer, report_problem, revocation, routing, trust_ping, Protocol,
 };
 pub use role::Role;
 use serde::Serialize;

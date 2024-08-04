@@ -111,7 +111,6 @@ fn process_protocol(
 
             fn try_from_version_parts(major: u8, minor: u8) -> crate::error::MsgTypeResult<Self> {
                 use crate::msg_types::traits::ProtocolVersion;
-
                 match major {
                     #(#try_from_match_arms),*,
                     _ => Err(crate::error::MsgTypeError::major_ver_err(major)),

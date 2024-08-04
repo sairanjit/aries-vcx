@@ -17,6 +17,7 @@ use crate::msg_types::{
         out_of_band::OutOfBandTypeV1,
         pickup::PickupTypeV2,
         present_proof::PresentProofTypeV1,
+        question_answer::QuestionAnswerTypeV1,
         report_problem::ReportProblemTypeV1,
         revocation::RevocationTypeV2,
         routing::RoutingTypeV1,
@@ -94,6 +95,7 @@ lazy_static! {
         map_insert(&mut m, extract_parts!(ReportProblemTypeV1::new_v1_0()));
         map_insert(&mut m, extract_parts!(RevocationTypeV2::new_v2_0()));
         map_insert(&mut m, extract_parts!(TrustPingTypeV1::new_v1_0()));
+        map_insert(&mut m, extract_parts!(QuestionAnswerTypeV1::new_v1_0()));
         map_insert(&mut m, extract_parts!(PickupTypeV2::new_v2_0()));
         map_insert(&mut m, extract_parts!(CoordinateMediationTypeV1::new_v1_0()));
         map_insert(&mut m, extract_parts!(DidExchangeTypeV1::new_v1_0()));

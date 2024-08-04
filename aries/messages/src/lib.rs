@@ -37,8 +37,8 @@ use crate::{
             basic_message::BasicMessage, connection::Connection,
             coordinate_mediation::CoordinateMediation, discover_features::DiscoverFeatures,
             notification::Notification, out_of_band::OutOfBand, present_proof::v1::PresentProofV1,
-            report_problem::ProblemReport, revocation::Revocation, routing::Forward,
-            trust_ping::TrustPing,
+            question_answer::QuestionAnswer, report_problem::ProblemReport, revocation::Revocation,
+            routing::Forward, trust_ping::TrustPing,
         },
         traits::DelayedSerde,
     },
@@ -76,6 +76,7 @@ pub enum AriesMessage {
     Pickup(Pickup),
     CoordinateMediation(CoordinateMediation),
     DidExchange(DidExchange),
+    QuestionAnswer(QuestionAnswer),
 }
 
 impl DelayedSerde for AriesMessage {
@@ -161,6 +162,10 @@ impl DelayedSerde for AriesMessage {
             Protocol::TrustPingType(msg_type) => {
                 TrustPing::delayed_deserialize((msg_type, kind_str), deserializer).map(From::from)
             }
+            Protocol::QuestionAnswerType(msg_type) => {
+                QuestionAnswer::delayed_deserialize((msg_type, kind_str), deserializer)
+                    .map(From::from)
+            }
             Protocol::DiscoverFeaturesType(msg_type) => {
                 DiscoverFeatures::delayed_deserialize((msg_type, kind_str), deserializer)
                     .map(From::from)
@@ -225,6 +230,7 @@ impl DelayedSerde for AriesMessage {
             Self::CoordinateMediation(v) => v.delayed_serialize(serializer),
             Self::DidExchange(DidExchange::V1_0(v)) => v.delayed_serialize(serializer),
             Self::DidExchange(DidExchange::V1_1(v)) => v.delayed_serialize(serializer),
+            Self::QuestionAnswer(v) => v.delayed_serialize(serializer),
         }
     }
 }
