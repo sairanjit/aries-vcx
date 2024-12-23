@@ -3,7 +3,6 @@ resolver = "2"
 
 members = [
     "aries/aries_vcx",
-    "aries/misc/legacy/libvdrtools",
     "aries/messages_macros",
     "aries/messages",
     "aries/misc/shared",
@@ -17,7 +16,6 @@ members = [
     "aries/aries_vcx_wallet",
     "aries/aries_vcx_ledger",
     "aries/misc/indy_ledger_response_parser",
-    "aries/misc/wallet_migrator",
     "aries/misc/test_utils",
     "did_core/did_doc",
     "did_core/did_methods/did_peer",
@@ -30,10 +28,13 @@ members = [
     "did_core/public_key",
     "misc/simple_message_relay",
     "misc/display_as_json",
+    "did_core/did_methods/did_jwk",
+    "did_core/did_methods/did_cheqd",
+    "did_core/did_methods/did_cheqd/cheqd_proto_gen",
 ]
 
 [workspace.package]
-version = "0.65.0"
+version = "0.67.0"
 authors = [
     "Absa Group Limited",
     "Hyperledger Indy Contributors <hyperledger-indy@lists.hyperledger.org>",
@@ -41,6 +42,7 @@ authors = [
 description = "Library to work with Aries protocols & collection of supporting components"
 license = "Apache-2.0"
 edition = "2021"
+rust-version = "1.79"
 
 [profile.release]
 debug = 0
@@ -79,7 +81,6 @@ indy-vdr = { git = "https://github.com/hyperledger/indy-vdr.git", tag = "v0.4.3"
     "log",
 ] }
 indy-vdr-proxy-client = { git = "https://github.com/hyperledger/indy-vdr.git", tag = "v0.4.3" }
-indy-credx = { git = "https://github.com/hyperledger/indy-shared-rs", tag = "v1.1.0" }
 anoncreds = { git = "https://github.com/hyperledger/anoncreds-rs.git", tag = "v0.2.0" }
 aries-askar = { version = "0.3.1" }
 askar-crypto = { version = "0.3.1", default-features = false }
